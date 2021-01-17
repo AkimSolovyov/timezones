@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-function useNewTimer(currentDate) {
-  const [date, setDate] = useState(currentDate);
+function useNewTimer(currentTime) {
+  const [time, setTime] = useState(currentTime);
 
   useEffect(() => {
     var timerID = setInterval(() => tick(), 1000);
@@ -12,10 +12,10 @@ function useNewTimer(currentDate) {
   });
 
   function tick() {
-    setDate(date.plus({ seconds: 1 }));
+    setTime(time.plus({ seconds: 1 }));
   }
 
-  return date;
+  return { time, setTime };
 }
 
 export default useNewTimer;

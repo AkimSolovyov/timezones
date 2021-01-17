@@ -83,10 +83,7 @@ const SearchSection = () => {
                 <strong>TZ Offset:</strong> {result.TZOffset}
               </li>
               <li className='list-inline-item'>
-                <strong>Time:</strong>{' '}
-                <time>
-                  {lastAddedTime.hour}:{lastAddedTime.minute}
-                </time>
+                <strong>Time:</strong> <time>{lastAddedTime}</time>
               </li>
             </ul>
           </Alert>

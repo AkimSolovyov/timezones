@@ -1,7 +1,4 @@
-import moment from 'moment';
 import * as TYPES from '../types';
-
-import { pasrseFloatOffset } from '../../helpers/index';
 
 export const initialState = {
   cities: [],
@@ -15,17 +12,6 @@ export default function citiesReducer(state = initialState, action) {
     case TYPES.GET_CITY:
       return { ...state, loading: true, lastAdded: '' };
     case TYPES.GET_CITY_SUCCESS:
-      // console.log(
-      //   action.payload.data.time_zone[0].localtime,
-      //   action.payload.data.time_zone[0].utcOffset
-      // );
-      // const offset = action.payload.data.time_zone[0].utcOffset * 60;
-
-      // const t = moment.utc(action.payload.data.time_zone[0].localtime);
-
-      // console.log(t.utcOffset(offset, false));
-      // console.log(t.utc().format('HH:mm:ss'));
-
       return {
         cities: [
           ...state.cities,

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import CityTime from '../CityTime';
 import { changeCitiesOrder } from '../../redux/actions/citiesActions';
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, timer }) => {
   const initialDnDState = {
     draggedFrom: null,
     draggedTo: null,
@@ -127,7 +127,7 @@ const ItemList = ({ items }) => {
                   : 'grab',
             }}
           >
-            <CityTime item={item} />
+            <CityTime item={item} timer={timer} />
           </li>
         );
       })}

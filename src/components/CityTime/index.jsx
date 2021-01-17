@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { deleteCity } from '../../redux/actions/citiesActions';
 import Time from '../Time';
 
-const CityTime = ({ item }) => {
+const CityTime = ({ item, timer }) => {
   const { city, TZOffset, time } = item;
   const dispatch = useDispatch();
 
@@ -26,7 +26,8 @@ const CityTime = ({ item }) => {
           <strong>Fetched Time:</strong> <time>{time.slice(-5)}</time>
         </div>
         <div>
-          <strong>Dynamic Time:</strong> <Time time={time} />
+          <strong>Dynamic Time:</strong>{' '}
+          <Time timer={timer} offset={TZOffset} />
         </div>
       </div>
 
