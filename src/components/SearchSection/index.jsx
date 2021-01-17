@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 //local imports
+import Spinner from '../Spinner';
+import Alert from '../Alert';
 import { fetchCity, getCityFailure } from '../../redux/actions/citiesActions';
 import { getTime } from '../../helpers';
 
-const SearchSection = props => {
+const SearchSection = () => {
   const [cityName, setCityName] = useState('');
   const [lastAddedTime, setLastAddedTime] = useState('');
 
@@ -23,23 +25,17 @@ const SearchSection = props => {
     event.preventDefault();
 
     if (!cityName.length) {
-      dispatch(getCityFailure('City Name cannot be empty!'));
+      dispatch(getCityFailure('City name cannot be empty!'));
       return;
     }
 
     dispatch(fetchCity(cityName));
-  };
-
-  const updateTime = () => {
-    // this.setState({
-    //   date: new Date()
-    // });
+    setCityName('');
   };
 
   useEffect(() => {
     if (result) {
       setLastAddedTime(getTime(result.time));
-      console.log(getTime(result.time));
     }
     // return () => {
 
@@ -47,10 +43,10 @@ const SearchSection = props => {
   }, [result]);
 
   return (
-    <section className='py-5 text-center container'>
+    <section className='pt-5 text-center container'>
       <div className='row'>
         <div className='col-lg-6 col-md-8 mx-auto'>
-          <h3 className='fw-light'>Enter a City Name</h3>
+          <h3 className='fw-light'>Enter a city name</h3>
         </div>
       </div>
       <form
@@ -71,16 +67,14 @@ const SearchSection = props => {
           </button>
         </div>
       </form>
-      <div className='row my-2'>
-        {error && !loading && (
-          <div className='alert alert-danger' role='alert'>
-            {error}
-          </div>
-        )}
+      <div className='row'>
+        {!!loading && <Spinner />}
+
+        {error && !loading && <Alert>{error}</Alert>}
 
         {!error && !loading && result && (
-          <div className='alert alert-success' role='alert'>
-            <h4>Success! New item was added:</h4>
+          <Alert type='success'>
+            <h5>Success! New item was added:</h5>
             <ul className='list-inline'>
               <li className='list-inline-item'>
                 <strong>City:</strong> {result.city}
@@ -91,11 +85,11 @@ const SearchSection = props => {
               <li className='list-inline-item'>
                 <strong>Time:</strong>{' '}
                 <time>
-                  `${lastAddedTime.hour}:${lastAddedTime.minute}`
+                  {lastAddedTime.hour}:{lastAddedTime.minute}
                 </time>
               </li>
             </ul>
-          </div>
+          </Alert>
         )}
       </div>
     </section>

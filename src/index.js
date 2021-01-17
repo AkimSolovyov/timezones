@@ -4,18 +4,35 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import throttle from 'lodash.throttle';
 
 // Local imports
 import App from './App';
 import rootReducer from './redux/reducers';
+import { initialState } from './redux/reducers/citiesReducer';
+import { loadState, saveState } from './helpers';
 import reportWebVitals from './reportWebVitals';
 
 // Assets
 import './index.css';
 
+const persistedState = loadState();
+
 const store = createStore(
   rootReducer,
+  persistedState,
   composeWithDevTools(applyMiddleware(thunk))
+);
+
+store.subscribe(
+  throttle(() => {
+    saveState({
+      app: {
+        ...initialState,
+        cities: [...store.getState().app.cities],
+      },
+    });
+  }, 1000)
 );
 
 const app = (

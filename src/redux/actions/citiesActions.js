@@ -15,6 +15,16 @@ export const getCityFailure = error => ({
   payload: error,
 });
 
+export const deleteCity = city => ({
+  type: TYPES.DELETE_CITY,
+  payload: city,
+});
+
+export const changeCitiesOrder = cities => ({
+  type: TYPES.CHANGE_CITIES_ORDER,
+  payload: cities,
+});
+
 export function fetchCity(city) {
   return async dispatch => {
     dispatch(getCity());
