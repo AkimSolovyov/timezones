@@ -22,7 +22,12 @@ const CityTime = ({ item }) => {
         <strong>TZ Offset:</strong> {TZOffset}
       </div>
       <div className='p-2 col-sm text-start'>
-        <strong>Time:</strong> <time>{time.slice(-5)}</time>
+        <div>
+          <strong>Fetched Time:</strong> <time>{time.slice(-5)}</time>
+        </div>
+        <div>
+          <strong>Dynamic Time:</strong> <Time time={time} />
+        </div>
       </div>
 
       <div className='p-2 text-start'>

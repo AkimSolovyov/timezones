@@ -12,7 +12,7 @@ function useNewTimer(currentDate) {
   });
 
   function tick() {
-    setDate(new Date());
+    setDate(date.plus({ seconds: 1 }));
   }
 
   return date;

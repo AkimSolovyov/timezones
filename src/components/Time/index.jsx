@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 
 //local imports
 import useNewTimer from '../../hooks/useNewTimer';
 
 const Time = props => {
-  const timer = useNewTimer(DateTime.local());
+  const timer = useNewTimer(DateTime.fromSQL(props.time));
+  const [editable, setEditable] = useState(false);
+
+  const toggleEditableHandler = () => {
+    setEditable(prev => (prev = !editable));
+  };
 
   // const dt = DateTime.local();
   // dt.zoneName; //=> 'America/New_York'
@@ -15,7 +20,20 @@ const Time = props => {
   // dt.isOffsetFixed; //=> false
   // dt.isInDST; //=> true
 
-  return <div>{timer.toString()}</div>;
+  return (
+    <span>
+      {!editable ? (
+        <span onClick={toggleEditableHandler}>{timer.toFormat('TT')}</span>
+      ) : (
+        <input
+          className='form-control form-control-sm'
+          type='text'
+          style={{ display: 'inline', width: 'auto' }}
+          onBlur={toggleEditableHandler}
+        ></input>
+      )}
+    </span>
+  );
 };
 
 export default Time;

@@ -24,13 +24,23 @@ export const saveState = state => {
 export const getTime = data => {
   // DateTime.fromSQL('2017-05-15 09:24:15');
   const { hour, minute } = DateTime.fromSQL(data).c;
+
+  const t = DateTime.local();
+  t.minus({ minutes: DateTime.local().offset });
+
+  console.log(DateTime.local().offset);
+  console.log(t.toFormat('TT'));
   return { hour, minute };
 };
 
-export const pasrseFloatOffset = str => {
-  const res = String(str).split('.');
-  const h = Number(res[0] * 60);
-  const m = h > 0 ? h + Number(res[1]) : h - Number(res[1]);
+// export const calcTime = (dateTime, offset) => {
+//   return;
+// };
 
-  return m;
-};
+// export const pasrseFloatOffset = str => {
+//   const res = String(str).split('.');
+//   const h = Number(res[0] * 60);
+//   const m = h > 0 ? h + Number(res[1]) : h - Number(res[1]);
+
+//   return m;
+// };
