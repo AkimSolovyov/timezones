@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/timezones/static/css/main.1de2fe89.chunk.css",
-    "main.js": "/timezones/static/js/main.14cd750d.chunk.js",
+    "main.js": "/timezones/static/js/main.a21e7df6.chunk.js",
     "runtime-main.js": "/timezones/static/js/runtime-main.ccdcbfdc.js",
     "static/js/2.2fd90a07.chunk.js": "/timezones/static/js/2.2fd90a07.chunk.js",
     "static/js/3.1edfc2b6.chunk.js": "/timezones/static/js/3.1edfc2b6.chunk.js",
@@ -12,6 +12,6 @@
     "static/js/runtime-main.ccdcbfdc.js",
     "static/js/2.2fd90a07.chunk.js",
     "static/css/main.1de2fe89.chunk.css",
-    "static/js/main.14cd750d.chunk.js"
+    "static/js/main.a21e7df6.chunk.js"
   ]
 }
