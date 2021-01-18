@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { deleteCity } from '../../redux/actions/citiesActions';
 import Time from '../Time';
 
-const CityTime = ({ item, timer }) => {
+const CityItem = ({ item, timer }) => {
   const { city, TZOffset, time } = item;
   const dispatch = useDispatch();
 
@@ -15,19 +15,18 @@ const CityTime = ({ item, timer }) => {
 
   return (
     <div className='d-flex justify-content-between align-items-center'>
-      <div className='p-2 col-sm text-start'>
+      <div className='p-2 col-sm-6 text-start'>
         <strong>{city}</strong>
       </div>
       <div className='p-2 col-sm text-start'>
-        <strong>TZ Offset:</strong> {TZOffset}
+        <strong>UTC offset:</strong> {TZOffset}
       </div>
       <div className='p-2 col-sm text-start'>
-        <div>
+        {/*<div>
           <strong>Fetched Time:</strong> <time>{time.slice(-5)}</time>
-        </div>
+        </div>*/}
         <div>
-          <strong>Dynamic Time:</strong>{' '}
-          <Time timer={timer} offset={TZOffset} />
+          <strong>Time:</strong> <Time timer={timer} offset={TZOffset} />
         </div>
       </div>
 
@@ -52,4 +51,4 @@ const CityTime = ({ item, timer }) => {
   );
 };
 
-export default CityTime;
+export default CityItem;

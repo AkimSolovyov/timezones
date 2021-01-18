@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const Time = ({ timer, offset }) => {
   const [editable, setEditable] = useState(false);
+  const timeInput = useRef(null);
 
   const toggleEditableHandler = () => {
     setEditable(prev => !prev);
@@ -20,14 +21,42 @@ const Time = ({ timer, offset }) => {
     const hours = newTime[0];
     const minutes = newTime[1];
 
-    timer.setTime(
-      timer.time.set({ hours: hours, minutes: minutes, seconds: 0 })
-    );
+    const currentDate = new Date();
+    currentDate.setHours(Number(hours), Number(minutes));
+    const futureDate = new Date(currentDate.getTime() - offset * 60 * 60000);
 
-    console.log(timer.time);
+    if (e.target.value) {
+      timer.setTime(
+        timer.time.set({
+          hours: futureDate.getHours(),
+          minutes: futureDate.getMinutes(),
+          seconds: 0,
+        })
+      );
+    } else {
+      timer.setTime(
+        timer.time.set({
+          hours: timer.time.hours,
+          minutes: timer.time.minutes,
+          seconds: 0,
+        })
+      );
+    }
 
     setEditable(prev => !prev);
   };
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      if (editable) {
+        timeInput.current.focus();
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(delay);
+    };
+  }, [editable]);
 
   return (
     <span>
@@ -41,6 +70,7 @@ const Time = ({ timer, offset }) => {
           type='time'
           style={{ display: 'inline', width: 'auto' }}
           onBlur={changeTimeHandler}
+          ref={timeInput}
         ></input>
       )}
     </span>

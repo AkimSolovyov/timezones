@@ -24,8 +24,3 @@ export const saveState = state => {
 export const getTime = data => {
   return DateTime.fromSQL(data).toFormat('TT');
 };
-
-export const reCalcTime = (dateTime, offset) => {
-  const t = DateTime.local().toUTC();
-  return t;
-};

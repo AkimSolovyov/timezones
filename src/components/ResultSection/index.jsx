@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DateTime } from 'luxon';
 import { useSelector } from 'react-redux';
 
@@ -11,14 +11,6 @@ const ResultSection = props => {
 
   // global timer for all items
   const timer = useNewTimer(DateTime.local().toUTC());
-
-  // const setNewTimerHandler = () => {
-  //   console.log('timer before: ', timer.toFormat('HH:mm:ss'));
-
-  //   const newT = useNewTimer(timer.set({ hours: 14, minutes: 0, seconds: 0 }));
-
-  //   console.log('timer after: ', newT.toFormat('HH:mm:ss'));
-  // };
 
   return (
     <section className='py-5 text-center container'>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // local imports
-import CityTime from '../CityTime';
+import CityItem from '../CityItem';
 import { changeCitiesOrder } from '../../redux/actions/citiesActions';
 
 const ItemList = ({ items, timer }) => {
@@ -127,7 +127,7 @@ const ItemList = ({ items, timer }) => {
                   : 'grab',
             }}
           >
-            <CityTime item={item} timer={timer} />
+            <CityItem item={item} timer={timer} />
           </li>
         );
       })}
